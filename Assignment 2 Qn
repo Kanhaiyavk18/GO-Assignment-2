@@ -1,0 +1,5 @@
+Write a function to implement pass by value & pass by pointer using struct.
+Implement stack using struct and methods (push and pop).
+Spawn N goroutines to calculate the sum of integers from an array of 100+ elements by dividing the array into N slices, (1 < n < 20).
+Write a consumer function returning a send only channel and consume the values by spawning a goroutine in consumer function call.
+Write a goroutine to combine the values from two channels and send on one separate channel, range over the third channel in main routine.
