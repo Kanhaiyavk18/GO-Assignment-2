@@ -4,42 +4,42 @@ import "fmt"
 
 func main() {
 
-	ch := make(chan int)
-	ch1 := make(chan int)
+	channel := make(chan int)
+	channel1 := make(chan int)
 	out := make(chan int)
 
-	// Channel 1
+	// Ch 1
 	go func() {
 		for i := 0; i < 10; i++ {
-			ch <- i + 1
-			fmt.Println("produced ch one", i+1)
+			channel <- i + 1
+			fmt.Println("produced channel one", i+1)
 		}
-		close(ch)
+		close(channel)
 	}()
 
-	// Channel 2
+	// Ch 2
 	go func() {
 		for i := 11; i < 21; i++ {
-			ch1 <- i + 1
-			fmt.Println("produced ch two", i+1)
+			channel1 <- i + 1
+			fmt.Println("produced channel two", i+1)
 		}
-		close(ch1)
+		close(channel1)
 	}()
 
-	go Produce(ch, ch1, out)
+	go Produce(channel, channel1, out)
 
 	for v := range out {
-		fmt.Println("consumed ch three", v)
+		fmt.Println("consumed channel three", v)
 	}
 
 }
 
-//Channel 3
-func Produce(ch, ch1, out chan int) {
-	for v := range ch {
+//Ch 3
+func Produce(channel, channel1, out chan int) {
+	for v := range channel {
 		out <- v
 	}
-	for v := range ch1 {
+	for v := range channel1 {
 		out <- v
 	}
 	close(out)
